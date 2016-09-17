@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,42 +13,46 @@ import model.Customer;
 import service.CustomerService;
 
 /**
- * Servlet implementation class DoLogin
+ * Servlet implementation class DoRegister
  */
-@WebServlet("/doLogin")
-public class DoLogin extends HttpServlet {
+@WebServlet("/doRegister")
+public class DoRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoLogin() {
+    public DoRegister() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CustomerService service = CustomerService.getInstance();
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
 		
-		CustomerService service = CustomerService.getInstance();
-		Customer customer = service.login(id, password);
-
+		Customer newCustomer = new Customer(id, password, name, gender, email);
+		
 		String page;
 		
-		if(customer == null){
-			page = "/view/loginFail.jsp";
-			request.setAttribute("id", id);
+		if(service.addCustomer(newCustomer)){
+			page = "/view/registerSuccess.jsp";
+			request.setAttribute("customer", newCustomer);
 		} else {
-			page = "/view/loginSuccess.jsp";
-			request.setAttribute("customer", customer);
+			page = "/view/error.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
+		
 	}
 
 }
