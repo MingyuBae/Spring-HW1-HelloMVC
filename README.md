@@ -64,7 +64,7 @@ helloMVC/
 ## 3. 클래스 설명 ##
 ### Home (Controller) ###
 로그인 폼, 회원가입 폼에 대한 Controller 부분으로 GET 방식으로만 요청을 받으며
-request의 action 파라메타로 보여질 뷰를 선택합니다.
+request의 action 파라미터로 보여질 뷰를 선택합니다.
 
 action이 login이면 loginForm.jsp, register이라면 registerForm.jsp으로 포워딩하게 됩니다.
 
