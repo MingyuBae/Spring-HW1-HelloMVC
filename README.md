@@ -71,7 +71,7 @@ action이 login이면 loginForm.jsp, register이라면 registerForm.jsp으로 �
 ### DoRegister (Controller) ###
 회원 가입 요청을 담당하는 Controller로 POST 방식으로만 회원 가입 요청을 받습니다.
 
-Customer 빈에 사용자가 입력한 파라미터를 넣으며 CustomerService의 addCustomer 메소드를 이용해 사용자를 등록합니다.
+Customer 빈에 사용자가 입력한 파라미터를 넣으며 CustomerService의 addCustomer 메서드를 이용해 사용자를 등록합니다.
 
 이후 addCustomer의 반환값을 통해 회원가입이 정상적으로 됬는지 여부를 판단하며
 정상적으로 처리된 경우 registerSuccess.jsp로 뷰을 연결시키고 회원가입 정보를 사용자에게 보여줍니다.
@@ -81,7 +81,7 @@ Customer 빈에 사용자가 입력한 파라미터를 넣으며 CustomerService
 ### DoRegister (Controller) ###
 로그인 처리를 담당하는 Controller로 POST 방식으로만 회원 가입 요청을 받습니다.
 
-CustomerService의 login 메소드를 이용해 사용자의 정보를 가져옵니다.
+CustomerService의 login 메서드를 이용해 사용자의 정보를 가져옵니다.
 
 로그인에 성공해 정상적으로 사용자 정보를 가져온 경우 뷰를 loginSuccess.jsp으로 보여주며,
 로그인 실패시 loginFail.jsp으로 뷰를 연결합니다.
@@ -91,7 +91,7 @@ CustomerService의 login 메소드를 이용해 사용자의 정보를 가져옵
 
 사용자 정보는 Map<String, Customer> 타입의 customers에 저장되며 [싱글톤 패턴](https://ko.wikipedia.org/wiki/%EC%8B%B1%EA%B8%80%ED%84%B4_%ED%8C%A8%ED%84%B4)을 적용하여 하나의 인스턴트로 각 컨트롤러에서 사용하게 됩니다.
 
-#### 메소드 설명 ####
+#### 메서드 설명 ####
 * boolean addCustomer(Customer customer): customers에 사용자를 등록, 등록 여부를 반환
 * Customer findCustomer(String id): customers에 있는 사용자를 조회, 찾은 사용자 정보를 반환
 * Customer login(String id, String password): id와 password가 일치하는 사용자 조회, 해당 조건에 일치하는 사용자 정보 반환
